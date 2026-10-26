@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberGuard VPN 与代理工具有什么区别？从连接方式谈起 - CyberGuard 知识库</title>
+  <meta name="description" content="深入对比 VPN 与代理工具在网络协议层级、流量接管方式、加解密开销、分流灵活性及客户端生态上的本质差异，帮助用户从技术底层厘清两者边界。">
+  <meta name="keywords" content="CyberGuard, CyberGuard VPN, 代理工具区别, TUN网卡, 规则分流, 客户端配置, 网络层协议, 应用层代理">
+  <link rel="canonical" href="https://cyberguard.sbs/articles/vpn-vs-proxy-differences.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="CyberGuard 知识库">
+  <meta property="og:url" content="https://cyberguard.sbs/articles/vpn-vs-proxy-differences.html">
+  <meta property="og:title" content="CyberGuard VPN 与代理工具有什么区别？从连接方式谈起">
+  <meta property="og:description" content="深入对比 VPN 与代理工具在网络协议层级、流量接管方式、加解密开销与分流灵活性上的本质差异。">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/article.css">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "CyberGuard VPN 与代理工具有什么区别？从连接方式谈起",
+    "description": "深入对比 VPN 与代理工具在网络协议层级、流量接管方式、加解密开销与分流灵活性上的本质差异。",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": "https://cyberguard.sbs/articles/vpn-vs-proxy-differences.html",
+    "author": {
+      "@type": "Organization",
+      "name": "CyberGuard Network Engineering Team"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CyberGuard",
+      "url": "https://cyberguard.sbs/"
+    },
+    "datePublished": "2026-10-21T10:30:00+08:00",
+    "dateModified": "2026-10-26T12:00:00+08:00"
+  }
+  </script>
+</head>
+<body>
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-bar"></div>
+
+  <!-- Header -->
+  <header class="site-header scrolled">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand-logo" aria-label="CyberGuard 首页">
+        <div class="brand-shield" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2L5 7V16C5 24.5 10.5 31.8 18 34C25.5 31.8 31 24.5 31 16V7L18 2Z" stroke="#00D9D0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 9V27M12 14L24 22M12 22L24 14" stroke="#477BFF" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="3.5" fill="#00D9D0"/>
+          </svg>
+        </div>
+        <div class="brand-name">
+          <span>CyberGuard</span>
+          <span class="brand-badge">TECH ARTICLES</span>
+        </div>
+      </a>
+
+      <nav aria-label="主导航">
+        <ul class="nav-menu">
+          <li><a href="../index.html#hero" class="nav-link">首页</a></li>
+          <li><a href="../index.html#services" class="nav-link">网络服务</a></li>
+          <li><a href="../index.html#architecture" class="nav-link">技术架构</a></li>
+          <li><a href="../index.html#pricing" class="nav-link">套餐方案</a></li>
+          <li><a href="../index.html#guide" class="nav-link">使用指南</a></li>
+          <li><a href="../index.html#articles" class="nav-link active">知识库</a></li>
+          <li><a href="../index.html#faq" class="nav-link">常见问题</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-primary btn-sm">
+          <span>接入服务</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <section class="article-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="面包屑导航">
+        <a href="../index.html">首页</a>
+        <span class="separator">/</span>
+        <a href="../index.html#articles">技术知识库</a>
+        <span class="separator">/</span>
+        <span class="current">VPN 与代理区别辨析</span>
+      </nav>
+
+      <div class="article-header">
+        <h1 class="article-h1">CyberGuard VPN 与代理工具有什么区别？从连接方式谈起</h1>
+        <div class="article-meta-bar">
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>预计阅读时间：11 分钟 (约 1,750 字)</span>
+          </div>
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>技术撰写：CyberGuard 架构组</span>
+          </div>
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>更新时间：2026年10月</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Article Body -->
+  <main class="container">
+    <div class="article-layout">
+      <!-- Article Content Column -->
+      <article class="article-body">
+        <section id="confusion">
+          <h2>一、日常网络讨论中的概念混淆</h2>
+          <p>
+            在很多非专业用户的讨论中，“VPN”和“代理（Proxy）”这两个术语常常被混为一谈。不少人将所有能够改变 IP、访问海外网站的工具都统称为“VPN”；而在专业技术领域，两者的底层实现方式、工作层级以及适用场景却存在着极其深刻的差异。
+          </p>
+          <p>
+            在探讨 CyberGuard 服务时，准确理解这些概念不仅能避免误解，更能帮助用户合理配置客户端分流规则，避免因全局代理而导致的境内访问减速或银行网银安全风控。
+          </p>
+        </section>
+
+        <section id="osi-layers">
+          <h2>二、OSI 模型下的协议层级差异</h2>
+          <p>
+            计算机网络通常通过开放系统互连参考模型（OSI 7 层模型）来定义数据处理的不同阶段。VPN 与代理的核心技术差异，本质上正是它们在 OSI 模型中所处层级的不同：
+          </p>
+
+          <div class="article-table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>对比维度</th>
+                  <th>传统虚拟专用网 (VPN)</th>
+                  <th>现代智能分流代理 (Proxy)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>OSI 工作层级</td>
+                  <td>网络层（第 3 层）或数据链路层（第 2 层）</td>
+                  <td>传输层（第 4 层）至应用层（第 7 层）</td>
+                </tr>
+                <tr>
+                  <td>系统接管机制</td>
+                  <td>创建虚拟网卡（TUN/TAP 网卡驱动）</td>
+                  <td>设置系统 HTTP/SOCKS 代理或局部拦截</td>
+                </tr>
+                <tr>
+                  <td>流量覆盖范围</td>
+                  <td>默认接管整台设备全部 IP 数据包</td>
+                  <td>支持按域名（Domain）与 IP-CIDR 精细分流</td>
+                </tr>
+                <tr>
+                  <td>典型技术代表</td>
+                  <td>IPsec、OpenVPN、WireGuard、IKEv2</td>
+                  <td>Shadowsocks、VMess、VLESS、Trojan、Hysteria</td>
+                </tr>
+                <tr>
+                  <td>主要原始设计目的</td>
+                  <td>企业员工安全加密接入公司内网</td>
+                  <td>绕过中间网络障碍、数据缓存与精细流控</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>1. 传统 VPN 的工作机理</h3>
+          <p>
+            VPN 最初是作为企业内网安全扩展技术而诞生的。当你在电脑上启动 OpenVPN 或 WireGuard 时，系统会在操作系统底层安装一个虚拟网卡（Virtual Adapter）。
+          </p>
+          <p>
+            操作系统会将本地默认路由的网关直接指向该虚拟网卡。这意味着：<strong>设备上产生的所有网络数据包（无论是浏览器的网页请求、后台系统更新、游戏 UDP 流量，还是本地局域网打印机通信）都会被整体打包、强加密，然后封装进外部隧道发往 VPN 服务器。</strong>
+          </p>
+
+          <h3>2. 现代分流代理的工作机理</h3>
+          <p>
+            而代理工具（如 Shadowsocks、Trojan 等协议）最初设计就是为了轻量级流量中继。它们通常工作在传输层和应用层，基于 SOCKS5 或特定轻量封装协议运作。
+          </p>
+          <p>
+            代理客户端无需整体重写系统底层路由表，而是作为用户空间程序运行。当应用程序（如 Chrome）产生请求时，代理核心能够解析请求中的<strong>目标域名（SNI）与目的 IP 地址</strong>，并根据预设规则表做出判断：如果是百度、淘宝等境内网站，直接放行直连；如果是境外目标，才进行轻量封装并发送至海外出口节点。
+          </p>
+        </section>
+
+        <section id="traffic-routing">
+          <h2>三、全局接管 vs 规则分流：使用体验的本质区别</h2>
+          <p>
+            这种底层机制的差异，直接导致了两类工具在日常使用体验上的截然不同：
+          </p>
+
+          <div class="callout callout-warning">
+            <div class="callout-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              <span>传统 VPN 的“全局倒灌”痛点</span>
+            </div>
+            <p>
+              使用传统商业 VPN 时，由于其默认全局接管所有数据包，你的所有本地应用访问（如微信、淘宝、国内视频 App）都会绕道海外服务器再返回国内。这不仅会导致国内网站加载变得极其缓慢，消耗宝贵的境外专线流量，还可能因为频繁更换为境外 IP 而触发各大银行与电商平台的安全风险控制（验证码频繁弹出甚至账号保护性冻结）。
+            </p>
+          </div>
+
+          <p>
+            相比之下，现代代理生态通过<strong>分流规则系统（Rule-based Routing）</strong>彻底解决了这一痛点：
+          </p>
+          <ul>
+            <li><strong>DIRECT（直连规则）：</strong>中国大陆 IP 段（GeoIP: CN）以及常见境内顶级域名（如 .cn、.com.cn）直接通过本地宽带发出，不走代理通道，保持零延迟、满带宽；</li>
+            <li><strong>PROXY（代理规则）：</strong>仅对国外主流服务、开发协作平台及海外媒体走专线节点中继；</li>
+            <li><strong>REJECT（广告拦截）：</strong>直接在客户端层丢弃已知广告追踪器与恶意遥测域名的 DNS 请求，提升页面加载纯净度。</li>
+          </ul>
+        </section>
+
+        <section id="encryption-performance">
+          <h2>四、加解密开销与传输效率对比</h2>
+          <p>
+            加解密算法与协议开销直接影响到设备电量消耗与吞吐速率：
+          </p>
+          <ol>
+            <li><strong>协议头开销：</strong>传统 VPN（如 OpenVPN）在每一层网络封包上都叠加了冗长的安全头，导致以太网最大传输单元（MTU）缩小，容易产生 IP 分片（Fragmentation），在大并发下载时性能损耗明显；</li>
+            <li><strong>内核态与用户态上下文切换：</strong>虽然现代 WireGuard 已经并入 Linux 内核，但在移动端（iOS / Android）受限于沙盒权限，多数 VPN 仍需频繁进行用户空间与内核空间的数据拷贝；</li>
+            <li><strong>代理协议轻量化：</strong>现代代理协议（如采用 ChaCha20-Poly1305 或 AES-128-GCM 的轻量加密算法）针对流媒体大流量进行了极致的传输优化，减少握手往返（RTT），并在移动设备上具备极佳的省电特性。</li>
+          </ol>
+        </section>
+
+        <section id="ecosystem">
+          <h2>五、客户端与节点服务的生态协同关系</h2>
+          <p>
+            许多初学者容易产生另一个认知偏差：“我下载了 Clash 或 Shadowrocket，为什么还不能上网？”
+          </p>
+          <p>
+            必须明确：<strong>客户端软件与节点服务是完全独立的两个实体。</strong>
+          </p>
+          <ul>
+            <li><strong>客户端（如 Clash Verge Rev、Shadowrocket、sing-box）：</strong>如同“网络播放器”，它们是开源或商业开发者开发的独立图形工具，负责在本地解析规则、管理系统代理及控制网络数据流向；</li>
+            <li><strong>网络服务（如 CyberGuard）：</strong>则是实际提供物理专线、BGP 入口服务器与境外出口节点的“服务提供方”。CyberGuard 为用户提供标准化的订阅链接（Subscription URL），客户端导入该链接后，才能读取到具体的服务器 IP、端口号与通信密钥。</li>
+          </ul>
+        </section>
+
+        <section id="selection-guide">
+          <h2>六、用户场景选择建议</h2>
+          <p>
+            针对不同使用场景，推荐选择对应的技术工具：
+          </p>
+          <div class="article-table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>核心诉求</th>
+                  <th>推荐技术方案</th>
+                  <th>技术理由</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>跨国学术研究、代码拉取与海外流媒体</td>
+                  <td><strong>CyberGuard 专线 + 规则分流代理</strong></td>
+                  <td>境内外流量互不干扰，专线低延迟，4K 流媒体秒开</td>
+                </tr>
+                <tr>
+                  <td>远程连接跨国公司内部私网 OA 系统</td>
+                  <td><strong>企业定制 VPN (IPsec / WireGuard)</strong></td>
+                  <td>需要严格的内网双向互访权限与端到端证书审计</td>
+                </tr>
+                <tr>
+                  <td>公共咖啡馆 Wi-Fi 下防范本地局域网嗅探</td>
+                  <td><strong>HTTPS 加密 + 代理或 VPN 均可</strong></td>
+                  <td>现代 Web 已经普及 TLS 1.3，配合代理即可防范中间人监听</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="article-summary">
+          <h2>七、核心要点总结</h2>
+          <p>
+            简而言之：传统 VPN 强在“全流量虚拟内网封装”，适用于严苛的企业内网办公；而以 CyberGuard 为代表的现代网络服务，结合成熟的规则分流代理生态，在<strong>跨境网络加速、日常多任务协同、低开销以及无感知使用体验</strong>上具有无可比拟的技术优势。
+          </p>
+          <p>
+            接下来，您可以继续阅读：
+          </p>
+          <ul>
+            <li>掌握节点的具体评测指标：<a href="node-selection-guide.html">《CyberGuard 节点选择指南：延迟、地区与线路质量》</a></li>
+            <li>查看多平台配置实操：<a href="client-configuration-guide.html">《CyberGuard 客户端配置知识：Windows、macOS、Android、iOS》</a></li>
+            <li>探索详细套餐与资费：<a href="../index.html#pricing">CyberGuard 套餐对比</a></li>
+          </ul>
+        </section>
+
+        <!-- CTA Box -->
+        <div class="callout callout-blue" style="margin-top: 48px;">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span>开启智能分流新体验</span>
+          </div>
+          <p>
+            告别传统 VPN 的境内外流量倒灌困扰。CyberGuard 专线网络全面支持规则分流，流畅兼顾境内办公与跨境探索。<br>
+            <a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" style="font-weight: 700; text-decoration: underline; color: var(--color-cyan);">前往 CyberGuard 订购结算页面了解详情 →</a>
+          </p>
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="article-sidebar">
+        <div class="toc-sticky">
+          <div class="toc-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            <span>本文目录导航</span>
+          </div>
+          <ul class="toc-list">
+            <li class="toc-item"><a href="#confusion">一、日常概念混淆辨析</a></li>
+            <li class="toc-item"><a href="#osi-layers">二、OSI 协议层级深度对比</a></li>
+            <li class="toc-item"><a href="#traffic-routing">三、全局接管 vs 规则分流</a></li>
+            <li class="toc-item"><a href="#encryption-performance">四、加解密开销与效率</a></li>
+            <li class="toc-item"><a href="#ecosystem">五、客户端与节点协同关系</a></li>
+            <li class="toc-item"><a href="#selection-guide">六、不同使用场景选型建议</a></li>
+            <li class="toc-item"><a href="#article-summary">七、核心要点总结</a></li>
+          </ul>
+
+          <div class="sidebar-cta">
+            <h4>快速查看套餐方案</h4>
+            <p>支持 3 台及以上多设备同时在线</p>
+            <a href="../index.html#pricing" class="btn btn-primary btn-sm" style="width: 100%;">查看套餐方案</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div>
+          <span>© 2026 CyberGuard (cyberguard.sbs) · 官方技术知识库</span>
+        </div>
+        <div>
+          <a href="../privacy.html" style="color: var(--text-muted); margin-right: 16px;">隐私政策</a>
+          <a href="../terms.html" style="color: var(--text-muted); margin-right: 16px;">服务条款</a>
+          <a href="../sitemap.xml" style="color: var(--text-muted);">站点地图</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

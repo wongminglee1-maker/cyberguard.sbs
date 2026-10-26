@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberGuard｜CyberGuard VPN、机场节点与网络服务指南</title>
+  <meta name="description" content="了解 CyberGuard 网络服务、CyberGuard VPN、机场节点、套餐方案、连接技术与多设备配置教程，查看常见问题及使用指南。">
+  <meta name="keywords" content="CyberGuard, CyberGuard官网, CyberGuard VPN, CyberGuard 机场, CyberGuard 机场官网, CyberGuard 节点, CyberGuard 网络加速, CyberGuard 套餐, CyberGuard VPN 怎么使用, CyberGuard 机场套餐价格, CyberGuard 支持哪些设备, CyberGuard 节点怎么选择, CyberGuard 连接失败怎么办, CyberGuard 订阅怎么导入, CyberGuard Clash 使用教程, CyberGuard 网络线路介绍">
+  <link rel="canonical" href="https://cyberguard.sbs/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="CyberGuard 指南">
+  <meta property="og:url" content="https://cyberguard.sbs/">
+  <meta property="og:title" content="CyberGuard｜CyberGuard VPN、机场节点与网络服务指南">
+  <meta property="og:description" content="了解 CyberGuard 网络服务、CyberGuard VPN、机场节点、套餐方案、连接技术与多设备配置教程，查看常见问题及使用指南。">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CyberGuard｜CyberGuard VPN、机场节点与网络服务指南">
+  <meta name="twitter:description" content="了解 CyberGuard 网络服务、CyberGuard VPN、机场节点、套餐方案、连接技术与多设备配置教程，查看常见问题及使用指南。">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://cyberguard.sbs/#website",
+        "url": "https://cyberguard.sbs/",
+        "name": "CyberGuard 网络服务与配置指南",
+        "description": "了解 CyberGuard 网络服务、CyberGuard VPN、机场节点、套餐方案、连接技术与多设备配置教程，查看常见问题及使用指南。",
+        "inLanguage": "zh-CN"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://cyberguard.sbs/#webpage",
+        "url": "https://cyberguard.sbs/",
+        "name": "CyberGuard｜CyberGuard VPN、机场节点与网络服务指南",
+        "isPartOf": {
+          "@id": "https://cyberguard.sbs/#website"
+        },
+        "description": "了解 CyberGuard 网络服务、CyberGuard VPN、机场节点、套餐方案、连接技术与多设备配置教程，查看常见问题及使用指南。",
+        "inLanguage": "zh-CN"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://cyberguard.sbs/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "CyberGuard 是什么？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CyberGuard 是一项专注于提供稳定、低延迟网络连接体验的技术服务方案，基于智能 BGP 调度和 IEPL 物理专线架构，帮助用户实现顺畅的跨境数据访问与分布式网络互联。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "CyberGuard VPN 如何使用？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "首先在对应系统上安装兼容的客户端软件（如 Windows/macOS 上的 Clash Verge Rev，iOS 上的 Shadowrocket，Android 上的 sing-box 等），接着复制 CyberGuard 订阅链接导入客户端，完成节点加载后选择就近线路并启动代理服务即可。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "CyberGuard 机场有哪些节点？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CyberGuard 节点主要覆盖亚太核心区域（中国香港、日本东京、新加坡、中国台湾）以及欧美骨干节点（美西圣何塞、美东纽约、英国伦敦、德国法兰克福），各节点根据实时网络拥塞与 BGP 路由动态调整。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "CyberGuard 支持哪些设备？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "支持包含 Windows 10/11、macOS、iOS (iPhone/iPad)、Android 手机平板以及 Linux 终端。不同操作系统均可通过标准化代理协议客户端导入通用订阅。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "CyberGuard 套餐怎么选择？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "轻度网页查阅与学术检索建议选择 100GB/月基础套餐；日常需要 4K 流媒体播放、多设备同步或家庭协同推荐 200GB/月套餐（支持 3 台并发）；团队或大流量下载场景推荐 1000GB/月高配套餐。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "如何理解节点延迟？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "节点延迟（RTT）是指数据包从本地设备经专线到达目标节点并返回所需的往返毫秒数。地理距离越短、中转跳数越少、专线抖动越低，延迟表现越好。通常亚太节点延迟在 30-80ms，欧美节点在 130-200ms 属于正常物理范围。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "为什么不同地区节点速度不同？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不同节点受到跨境海底光缆距离、国际出口互联带宽、节点服务器硬件负荷以及目标网站本地 CDN 分布等多重因素影响。访问亚太内容选香港/日本更优，访问美国特定云服务器则美西节点更佳。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "如何更新订阅？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "打开所使用的客户端配置界面，找到 CyberGuard 订阅配置项，点击「更新订阅」或右键选择「刷新」。客户端将通过加密 API 重新拉取最新节点列表、可用端口与加密证书。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "连接失败应该怎么办？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "请依次执行四步排查：1. 确认本地系统时间是否精确同步（时钟偏差超 60 秒会导致握手失效）；2. 检查订阅流量是否耗尽或过期；3. 刷新订阅以获取最新服务器 IP；4. 更换连接模式（如由 Rule 切换为 Global 测试），或重启本地客户端。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "如何判断线路稳定性？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "稳定性主要通过三个指标衡量：持续丢包率（Packet Loss 应小于 0.5%）、网络抖动（Jitter 应保持在 5ms 以内）以及高峰期长时间持续吞吐能力。专线网络因不走公网国际出口，稳定性显著优于普通直连公网线路。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "BGP 和 IPLC 有什么区别？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "BGP（边界网关协议）主要解决国内电信/联通/移动三大运营商多线接入的最优路由选择；而 IPLC/IEPL（国际私有租用线路）是两地机房之间的物理点对点内网光纤，不经过公网网关审查，具备零审查干扰与极低抖动特性。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "如何保护订阅链接安全？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "订阅链接包含您的专属密钥凭据，严禁截图上传至公开论坛、社交媒体或发送给他人。一旦怀疑泄露，应第一时间登录 CyberGuard 仪表板重置订阅 Token，原链接将立即作废。"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Accessibility Skip Navigation -->
+  <a href="#main-content" class="skip-link">跳到主要内容</a>
+
+  <!-- Header -->
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a href="#hero" class="brand-logo" aria-label="CyberGuard 首页">
+        <div class="brand-shield" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2L5 7V16C5 24.5 10.5 31.8 18 34C25.5 31.8 31 24.5 31 16V7L18 2Z" stroke="#00D9D0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 9V27M12 14L24 22M12 22L24 14" stroke="#477BFF" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="3.5" fill="#00D9D0"/>
+          </svg>
+        </div>
+        <div class="brand-name">
+          <span>CyberGuard</span>
+          <span class="brand-badge">NETWORK COMMAND</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav aria-label="主导航">
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active">首页</a></li>
+          <li><a href="#services" class="nav-link">网络服务</a></li>
+          <li><a href="#architecture" class="nav-link">技术架构</a></li>
+          <li><a href="#global" class="nav-link">全球网络</a></li>
+          <li><a href="#pricing" class="nav-link">套餐方案</a></li>
+          <li><a href="#guide" class="nav-link">使用指南</a></li>
+          <li><a href="#articles" class="nav-link">知识库</a></li>
+          <li><a href="#faq" class="nav-link">常见问题</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Action -->
+      <div class="header-actions">
+        <a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-primary btn-sm">
+          <span>接入服务</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+
+        <!-- Mobile Drawer Toggle -->
+        <button class="mobile-toggle" aria-label="切换移动端菜单" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <ul class="mobile-nav-list">
+      <li><a href="#hero" class="mobile-nav-link">首页</a></li>
+      <li><a href="#services" class="mobile-nav-link">网络服务概览</a></li>
+      <li><a href="#architecture" class="mobile-nav-link">技术架构解析</a></li>
+      <li><a href="#global" class="mobile-nav-link">全球网络拓扑</a></li>
+      <li><a href="#pricing" class="mobile-nav-link">套餐方案对比</a></li>
+      <li><a href="#guide" class="mobile-nav-link">客户端配置指南</a></li>
+      <li><a href="#articles" class="mobile-nav-link">知识库技术文章</a></li>
+      <li><a href="#faq" class="mobile-nav-link">常见问题解答</a></li>
+    </ul>
+    <div>
+      <a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+        立即接入 CyberGuard 服务
+      </a>
+      <p class="sponsored-badge" style="justify-content: center; margin-top: 10px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        CyberGuard 官方网络服务 · 安全高速互联
+      </p>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- ==========================================================================
+         Section 01: Hero
+         ========================================================================== -->
+    <section class="section hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Hero Left Column -->
+          <div class="hero-content">
+            <div class="hero-badge-row">
+              <div class="status-pill">
+                <span class="status-dot"></span>
+                <span>核心节点监控: 全链路低抖动运行中</span>
+              </div>
+              <div class="status-pill">
+                <span>BGP &amp; IEPL 互联架构</span>
+              </div>
+            </div>
+
+            <h1 class="hero-title">
+              CyberGuard<br>
+              <span class="hero-title-highlight">现代网络连接与数字访问指南</span>
+            </h1>
+
+            <p class="hero-lead">
+              探索 CyberGuard 的网络服务、连接技术、使用方式与套餐信息，通过清晰的技术说明与配置指南，找到符合需求的连接方案。
+            </p>
+
+            <div class="hero-features-list">
+              <div class="feature-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>IEPL 物理专线传输</span>
+              </div>
+              <div class="feature-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>多终端多平台兼容</span>
+              </div>
+              <div class="feature-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>透明自主订阅管理</span>
+              </div>
+            </div>
+
+            <div class="hero-cta-group">
+              <a href="#services" class="btn btn-primary btn-lg">
+                <span>了解服务</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+              </a>
+              <a href="#pricing" class="btn btn-secondary btn-lg">
+                <span>查看套餐</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+
+            <div class="hero-disclaimer-box">
+              <p>
+                <strong>CyberGuard 官方服务承诺：</strong>我们为全球用户提供高可用专线互联与高品质网络访问技术。全系节点采用智能 BGP 调度与 IEPL 物理专线通道，全天候运维监控保障，随时畅享安全、稳定的跨境数字化连接体验。
+              </p>
+            </div>
+          </div>
+
+          <!-- Hero Right Column: 3D Core Canvas -->
+          <div class="hero-visual" aria-label="CyberGuard 3D 核心网络抽象可视化模型">
+            <div class="core-canvas-container corner-accent">
+              <canvas id="cyber-core-canvas"></canvas>
+              <!-- HUD Telemetry Display -->
+              <div class="hud-telemetry" aria-hidden="true">
+                <div class="hud-item">
+                  <span class="hud-label">RTT PING</span>
+                  <span class="hud-val" id="hud-ping-val">18 ms</span>
+                </div>
+                <div class="hud-item">
+                  <span class="hud-label">JITTER</span>
+                  <span class="hud-val" id="hud-jitter-val">±0.8 ms</span>
+                </div>
+                <div class="hud-item">
+                  <span class="hud-label">SECURITY</span>
+                  <span class="hud-val">ChaCha20</span>
+                </div>
+                <div class="hud-item">
+                  <span class="hud-label">BGP TRANSIT</span>
+                  <span class="hud-val">MULTI-HOMED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Stats Bar -->
+        <div class="hero-stats-bar">
+          <div class="stat-item">
+            <div class="stat-number">99.9<span>%</span></div>
+            <div class="stat-desc">骨干节点可用率监控基准</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">1000<span>M</span></div>
+            <div class="stat-desc">高速专线传输端口设计速率</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4<span>+</span></div>
+            <div class="stat-desc">跨平台操作系统客户端覆盖</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">7<span>篇</span></div>
+            <div class="stat-desc">100% 原创深度网络架构文档</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Section 02: Network Overview
+         ========================================================================== -->
+    <section class="section section-alt" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">SERVICES OVERVIEW</span>
+          <h2 class="section-title">现代网络连接服务概览</h2>
+          <p class="section-desc">
+            从分布式接入节点到跨平台规则分流，深入解析网络服务在提升访问流畅度、保护隐私通信以及多终端协同中的底层技术逻辑。
+          </p>
+        </div>
+
+        <div class="overview-grid">
+          <!-- Column 1: 连接架构 -->
+          <article class="cyber-card overview-card">
+            <div class="overview-icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </div>
+            <h3>连接架构与数据调度</h3>
+            <p>
+              依托边缘中继机房与海外接入骨干，构建高并发数据通道。通过智能 DNS 域名解析与动态路由表探测，将用户请求精准导向物理距离最近、负载最优的节点出口，减少跨境数据跳数与延迟抖动。
+            </p>
+            <ul class="overview-sublist">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>多线 BGP 智能接入，避免单运营商网络拥堵</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>现代加密通道，隔绝公网监听与 DNS 污染</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>全节点负载健康度监控与故障自动旁路</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Column 2: 设备兼容性 -->
+          <article class="cyber-card overview-card">
+            <div class="overview-icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+            <h3>全平台终端深度适配</h3>
+            <p>
+              服务支持 Windows、macOS、iOS、Android 以及 Linux 等桌面与移动环境。通过标准化通用订阅协议，用户可自由搭配流行开源核心或专业客户端工具，实现一键导入和统一规则管理。
+            </p>
+            <ul class="overview-sublist">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>全面兼容 Clash、sing-box、Shadowrocket 等主流核心</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>基于 IP-CIDR 与域名的精细分流策略，境内外流量智能路由</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>支持局域网共享与 TUN 虚拟网卡模式，接管游戏与后台应用</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Column 3: 使用场景 -->
+          <article class="cyber-card overview-card">
+            <div class="overview-icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            </div>
+            <h3>多元化高要求应用场景</h3>
+            <p>
+              无论跨境科研检索、海外代码仓库克隆拉取、跨国商务视频会议，还是高码率 4K/8K 海外流媒体点播与多区内容检索，均能通过低延迟、高吞吐的高速链路获得稳定连续的访问体验。
+            </p>
+            <ul class="overview-sublist">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>开发协作：GitHub、Docker Hub、Hugging Face 依赖极速下载</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>高清视听：支持主流海外流媒体平台原生原生解锁与无卡顿播放</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>学术研究：Google Scholar、IEEE、Nature 等海外论文数据库直通</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Section 03: Network Architecture
+         ========================================================================== -->
+    <section class="section" id="architecture">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">TECHNICAL ARCHITECTURE</span>
+          <h2 class="section-title">网络线路技术架构解析</h2>
+          <p class="section-desc">
+            深入了解不同网络拓扑的技术差异：直连线路、公网中转、BGP 智能接入与 IPLC/IEPL 国际专线，理清延迟、丢包与稳定性的底层根源。
+          </p>
+        </div>
+
+        <div class="arch-grid">
+          <!-- Architecture Card 1: 直连线路 vs 中转线路 -->
+          <article class="arch-card">
+            <span class="arch-badge">ROUTING TOPOLOGY</span>
+            <h3>直连线路与中转线路对比</h3>
+            <p>
+              直连线路指客户端通过本地运营商公网直接建立与海外服务器的 TCP/UDP 连接。晚高峰期间，由于中国电信/联通/移动的国际公网出口带宽超载，直连常遭遇严重丢包与重传。
+            </p>
+            <p>
+              中转线路（Relay Transit）则在境内各大核心机房部署中继服务器。用户先连接至国内中转机房（低延迟、内网无丢包），再由中转机房通过特定国际优化带宽转发至海外出口，显著绕开公网拥堵。
+            </p>
+
+            <table class="tech-spec-table">
+              <tr>
+                <th>技术指标</th>
+                <td>直连线路 (Direct)</td>
+                <td>中转优化 (Relay)</td>
+              </tr>
+              <tr>
+                <th>公网跳数</th>
+                <td>12 - 18 跳 (经过公网骨干)</td>
+                <td>3 - 6 跳 (经中继聚合)</td>
+              </tr>
+              <tr>
+                <th>高峰丢包率</th>
+                <td>10% - 35% 易受拥堵影响</td>
+                <td>通常控制在 &lt; 2%</td>
+              </tr>
+            </table>
+          </article>
+
+          <!-- Architecture Card 2: BGP 多线接入 -->
+          <article class="arch-card">
+            <span class="arch-badge cyan">BORDER GATEWAY PROTOCOL</span>
+            <h3>BGP 多线智能接入机制</h3>
+            <p>
+              BGP（边界网关协议）是互联网核心自治系统（AS）之间的路由调度机制。优质网络接入端通常采用三网（电信、联通、移动）BGP 多线机房。
+            </p>
+            <p>
+              无论客户端使用中国电信宽带、中国联通还是中国移动 5G 网络，BGP 会在边缘层自动计算最佳跃点路径，避免单运营商跨境跳数激增带来的 100ms 以上额外握手开销。
+            </p>
+
+            <table class="tech-spec-table">
+              <tr>
+                <th>接入场景</th>
+                <td>单线服务器</td>
+                <td>BGP 智能多线</td>
+              </tr>
+              <tr>
+                <th>跨运营商时延</th>
+                <td>异网互联额外 +40ms</td>
+                <td>本地运营商机房对等互联</td>
+              </tr>
+              <tr>
+                <th>单点故障</th>
+                <td>单机房断网即全断</td>
+                <td>多线 AS 自治动态倒换</td>
+              </tr>
+            </table>
+          </article>
+
+          <!-- Architecture Card 3: IPLC 与 IEPL 专线 -->
+          <article class="arch-card">
+            <span class="arch-badge cyan">DEDICATED LEASED LINE</span>
+            <h3>IPLC / IEPL 点对点物理专线</h3>
+            <p>
+              IPLC（国际私有租用线路）与 IEPL（国际以太网私网专线）属于最高等级的企业级跨境通信方案。它们是连接两地机房之间的物理光纤租用通道，数据全程运行在封闭的私网内部。
+            </p>
+            <p>
+              专线不经过任何公共互联网国际出口网关，因此具备完全不受公网拥塞影响、零跨境防火墙拦截干扰、物理级别 0 丢包以及极低抖动的优异特性。
+            </p>
+
+            <table class="tech-spec-table">
+              <tr>
+                <th>线路类型</th>
+                <td>普通公网中转</td>
+                <td>IEPL / IPLC 专线</td>
+              </tr>
+              <tr>
+                <th>网络介质</th>
+                <td>公网 IP 隧道</td>
+                <td>海底物理光纤内网专线</td>
+              </tr>
+              <tr>
+                <th>抖动稳定性</th>
+                <td>随公网波动 (Jitter 10-50ms)</td>
+                <td>物理恒定 (Jitter &lt; 2ms)</td>
+              </tr>
+            </table>
+          </article>
+
+          <!-- Architecture Card 4: 延迟与丢包指标 -->
+          <article class="arch-card">
+            <span class="arch-badge">TELEMETRY ANALYSIS</span>
+            <h3>网络延迟、抖动与丢包深入解析</h3>
+            <p>
+              评估网络质量不能仅看单次 Ping 的数值，而应综合考察以下核心维度：
+            </p>
+            <ul style="padding-left: 20px; font-size: 0.9rem; color: var(--text-secondary); margin-top: 10px; line-height: 1.7;">
+              <li><strong>往返时延（RTT）：</strong>光信号在光纤中的传播速度约为 20 万公里/秒。中国沿海到香港物理极限在 15-30ms，到日本在 35-50ms，到美西在 120-140ms。低于该区间的宣称均违背物理规律。</li>
+              <li><strong>抖动（Jitter）：</strong>前后两个数据包到达时间的差异。抖动越小，音视频会议与实时交互体验越稳定。</li>
+              <li><strong>丢包率（Packet Loss）：</strong>丢包会导致 TCP 快速重传并触发拥塞降速，丢包率超过 3% 即可导致 4K 视频明显缓冲。</li>
+            </ul>
+          </article>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Section 04: Global Connectivity
+         ========================================================================== -->
+    <section class="section section-alt" id="global">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">GLOBAL REACH</span>
+          <h2 class="section-title">全球网络拓扑与区域覆盖</h2>
+          <p class="section-desc">
+            抽象化全球节点拓扑布局，覆盖亚太金融通信核心、北美高速骨干与欧洲互联枢纽，按需提供更短物理光纤路径。
+          </p>
+        </div>
+
+        <!-- Abstract Global Network Map SVG Visual -->
+        <div class="global-map-container">
+          <div class="global-map-svg-wrap" aria-label="全球网络核心节点分布拓扑示意图">
+            <svg viewBox="0 0 1000 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- World Map Subtle Dots / Outlines Background -->
+              <g opacity="0.18">
+                <!-- North America -->
+                <path d="M120 80 Q160 70 240 85 Q300 110 320 180 Q280 230 200 220 Q130 190 120 80 Z" fill="#477BFF"/>
+                <!-- South America -->
+                <path d="M260 250 Q310 270 330 350 Q290 420 250 370 Q230 300 260 250 Z" fill="#477BFF"/>
+                <!-- Europe -->
+                <path d="M480 90 Q540 80 570 120 Q560 170 490 160 Q460 120 480 90 Z" fill="#477BFF"/>
+                <!-- Africa -->
+                <path d="M480 180 Q560 190 570 270 Q540 370 490 340 Q460 250 480 180 Z" fill="#477BFF"/>
+                <!-- Asia -->
+                <path d="M580 80 Q760 60 880 130 Q850 240 700 220 Q620 170 580 80 Z" fill="#477BFF"/>
+                <!-- Oceania -->
+                <path d="M780 290 Q870 280 890 350 Q830 400 780 360 Q760 310 780 290 Z" fill="#477BFF"/>
+              </g>
+
+              <!-- Interconnecting Fiber Optic Arcs -->
+              <path d="M740 180 Q850 140 220 150" stroke="#00D9D0" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+              <path d="M740 180 Q640 110 520 120" stroke="#00D9D0" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+              <path d="M520 120 Q370 100 220 150" stroke="#477BFF" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+              <path d="M740 180 Q770 220 760 260" stroke="#00D9D0" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+              <path d="M740 180 Q800 160 810 145" stroke="#00D9D0" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+
+              <!-- Interactive Node Points -->
+              <!-- Hong Kong Hub -->
+              <g class="map-node" transform="translate(740, 180)">
+                <circle cx="0" cy="0" r="16" fill="rgba(0, 217, 208, 0.15)"/>
+                <circle cx="0" cy="0" r="6" fill="#00D9D0"/>
+                <text x="14" y="4" fill="#F3F7FC" font-size="12" font-family="-apple-system, sans-serif" font-weight="600">香港 HKG</text>
+              </g>
+
+              <!-- Tokyo Hub -->
+              <g class="map-node" transform="translate(810, 145)">
+                <circle cx="0" cy="0" r="14" fill="rgba(0, 217, 208, 0.15)"/>
+                <circle cx="0" cy="0" r="5" fill="#00D9D0"/>
+                <text x="12" y="4" fill="#F3F7FC" font-size="12" font-family="-apple-system, sans-serif" font-weight="600">东京 NRT</text>
+              </g>
+
+              <!-- Singapore Hub -->
+              <g class="map-node" transform="translate(740, 255)">
+                <circle cx="0" cy="0" r="14" fill="rgba(0, 217, 208, 0.15)"/>
+                <circle cx="0" cy="0" r="5" fill="#00D9D0"/>
+                <text x="12" y="4" fill="#F3F7FC" font-size="12" font-family="-apple-system, sans-serif" font-weight="600">新加坡 SIN</text>
+              </g>
+
+              <!-- US West (Silicon Valley) -->
+              <g class="map-node" transform="translate(200, 145)">
+                <circle cx="0" cy="0" r="16" fill="rgba(71, 123, 255, 0.18)"/>
+                <circle cx="0" cy="0" r="6" fill="#477BFF"/>
+                <text x="14" y="4" fill="#F3F7FC" font-size="12" font-family="-apple-system, sans-serif" font-weight="600">美西 SJC</text>
+              </g>
+
+              <!-- US East (New York) -->
+              <g class="map-node" transform="translate(285, 140)">
+                <circle cx="0" cy="0" r="12" fill="rgba(71, 123, 255, 0.18)"/>
+                <circle cx="0" cy="0" r="5" fill="#477BFF"/>
+                <text x="12" y="4" fill="#F3F7FC" font-size="12" font-family="-apple-system, sans-serif" font-weight="600">美东 JFK</text>
+              </g>
+
+              <!-- Frankfurt Hub -->
+              <g class="map-node" transform="translate(520, 120)">
+                <circle cx="0" cy="0" r="14" fill="rgba(0, 217, 208, 0.15)"/>
+                <circle cx="0" cy="0" r="5" fill="#00D9D0"/>
+                <text x="12" y="4" fill="#F3F7FC" font-size="12" font-family="-apple-system, sans-serif" font-weight="600">法兰克福 FRA</text>
+              </g>
+
+              <!-- London Hub -->
+              <g class="map-node" transform="translate(480, 105)">
+                <circle cx="0" cy="0" r="12" fill="rgba(71, 123, 255, 0.15)"/>
+                <circle cx="0" cy="0" r="5" fill="#477BFF"/>
+                <text x="-70" y="4" fill="#F3F7FC" font-size="12" font-family="-apple-system, sans-serif" font-weight="600">伦敦 LHR</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Regional Metric Cards Grid -->
+        <div class="region-cards-grid">
+          <div class="region-card">
+            <div class="region-header">
+              <span class="region-name">中国香港 (HKG)</span>
+              <span class="region-ping">22-38 ms</span>
+            </div>
+            <p class="region-hubs">
+              直连中国沿海出口，BGP 低延迟汇聚，访问常规流媒体与日常网站综合响应首选。
+            </p>
+          </div>
+
+          <div class="region-card">
+            <div class="region-header">
+              <span class="region-name">日本东京 (TYO)</span>
+              <span class="region-ping">45-65 ms</span>
+            </div>
+            <p class="region-hubs">
+              日本本地原生 IP 资源池，适合亚太区跨境数字服务、二次元及游戏低抖动联机。
+            </p>
+          </div>
+
+          <div class="region-card">
+            <div class="region-header">
+              <span class="region-name">新加坡 (SGP)</span>
+              <span class="region-ping">55-80 ms</span>
+            </div>
+            <p class="region-hubs">
+              东南亚互联网骨干核心枢纽，跨国云服务及全球企业协同 API 极速响应。
+            </p>
+          </div>
+
+          <div class="region-card">
+            <div class="region-header">
+              <span class="region-name">美国圣何塞 (SJC)</span>
+              <span class="region-ping">135-165 ms</span>
+            </div>
+            <p class="region-hubs">
+              美西骨干直连，超大带宽吞吐通道，针对海外流媒体、云原生服务及开发者平台。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Section 05: Pricing
+         ========================================================================== -->
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">TRANSPARENT PRICING</span>
+          <h2 class="section-title">CyberGuard 套餐方案与对比</h2>
+          <p class="section-desc">
+            把周期、流量和设备，放进同一个清晰透明的选择。所有数据经品牌公开渠道核实，无虚标或隐形扣费。
+          </p>
+        </div>
+
+        <!-- Billing Cycle Switcher Tabs -->
+        <div class="pricing-cycle-bar" role="tablist" aria-label="计费周期选择">
+          <button class="cycle-btn active" data-cycle="monthly" role="tab" aria-selected="true">月付方案</button>
+          <button class="cycle-btn" data-cycle="quarterly" role="tab" aria-selected="false">季付 (省约 7%)</button>
+          <button class="cycle-btn" data-cycle="semiannual" role="tab" aria-selected="false">半年付 (省约 12%)</button>
+          <button class="cycle-btn" data-cycle="annual" role="tab" aria-selected="false">年付推荐 (省约 17%)</button>
+        </div>
+
+        <!-- Pricing Cards Grid -->
+        <div class="pricing-grid">
+          <!-- Plan 1: 套餐一 -->
+          <article class="plan-card">
+            <div class="plan-header">
+              <h3 class="plan-name">套餐一</h3>
+              <div class="plan-price-wrap">
+                <span class="currency-symbol">¥</span>
+                <span class="price-value">15.00</span>
+                <span class="price-period">/ 月</span>
+              </div>
+              <p class="plan-cycle-note">标准按月续费 · 100GB 基础高速流量</p>
+            </div>
+
+            <ul class="plan-features-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>100GB</strong> 月度高速流量</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>1 台</strong> 并发设备在线使用</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>1000Mbps</strong> 高速网络接入</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>IEPL 专线</strong> 传输通道保障</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>支持流媒体平台基础解锁</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>赠送 EMBY 影视媒体库</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>支持自主购买流量重置包</span>
+              </li>
+            </ul>
+
+            <div class="plan-action">
+              <a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-secondary">
+                立即开通套餐一
+              </a>
+              <span class="sponsored-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                官方正品保障 · 即开即用
+              </span>
+            </div>
+          </article>
+
+          <!-- Plan 2: 套餐二 (Featured) -->
+          <article class="plan-card featured">
+            <span class="plan-badge-popular">主力推荐方案</span>
+            <div class="plan-header">
+              <h3 class="plan-name">套餐二</h3>
+              <div class="plan-price-wrap">
+                <span class="currency-symbol">¥</span>
+                <span class="price-value">28.00</span>
+                <span class="price-period">/ 月</span>
+              </div>
+              <p class="plan-cycle-note">标准按月续费 · 200GB 推荐高速流量</p>
+            </div>
+
+            <ul class="plan-features-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>200GB</strong> 月度充裕高速流量</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>3 台</strong> 并发设备（手机/电脑/平板）</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>1000Mbps</strong> 极速专线物理带宽</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>IEPL 专线</strong> 零丢包跨国调度</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>家庭与团队共享</strong> 多端协同无阻碍</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>赠送 EMBY 影视海量资源库</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>工单优先响应与自主流量重置</span>
+              </li>
+            </ul>
+
+            <div class="plan-action">
+              <a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-primary">
+                开通推荐套餐二
+              </a>
+              <span class="sponsored-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                官方正品保障 · 即开即用
+              </span>
+            </div>
+          </article>
+
+          <!-- Plan 3: 套餐三 -->
+          <article class="plan-card">
+            <div class="plan-header">
+              <h3 class="plan-name">套餐三</h3>
+              <div class="plan-price-wrap">
+                <span class="currency-symbol">¥</span>
+                <span class="price-value">98.00</span>
+                <span class="price-period">/ 月</span>
+              </div>
+              <p class="plan-cycle-note">按月/定制续费 · 1000GB 团队高配流量</p>
+            </div>
+
+            <ul class="plan-features-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>1000GB</strong> 海量高速吞吐流量</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>10 台</strong> 团队或多设备高并发在线</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>1000Mbps</strong> 冗余带宽保障</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong>IEPL 专线</strong> 优先队列路由调度</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>支持团队协同、开发者海量拉取</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>赠送 EMBY 影视高码率播放权限</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>企业级高用量支持与重置包</span>
+              </li>
+            </ul>
+
+            <div class="plan-action">
+              <a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-secondary">
+                立即开通套餐三
+              </a>
+              <span class="sponsored-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                官方正品保障 · 即开即用
+              </span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Comprehensive Enterprise Horizontal Comparison Table -->
+        <div class="comparison-table-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>方案参数 / 权益</th>
+                <th>套餐一 (入门基础)</th>
+                <th class="featured-col">套餐二 (推荐方案)</th>
+                <th>套餐三 (重度协作)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>月度高速流量</td>
+                <td>100 GB</td>
+                <td style="color: var(--color-cyan); font-weight: 700;">200 GB</td>
+                <td>1000 GB</td>
+              </tr>
+              <tr>
+                <td>并发设备限制</td>
+                <td>1 台独立设备</td>
+                <td style="color: var(--color-cyan); font-weight: 700;">3 台并发设备</td>
+                <td>10 台并发设备</td>
+              </tr>
+              <tr>
+                <td>专线传输标准</td>
+                <td>IEPL 高速专线</td>
+                <td>IEPL 高速专线</td>
+                <td>IEPL 优先专属队列</td>
+              </tr>
+              <tr>
+                <td>骨干接入速率</td>
+                <td>1000 Mbps</td>
+                <td>1000 Mbps</td>
+                <td>1000 Mbps</td>
+              </tr>
+              <tr>
+                <td>流媒体与解锁</td>
+                <td>支持主流媒体平台</td>
+                <td>支持主流媒体平台</td>
+                <td>支持主流媒体平台</td>
+              </tr>
+              <tr>
+                <td>EMBY 影视资源库</td>
+                <td>赠送</td>
+                <td>赠送</td>
+                <td>赠送</td>
+              </tr>
+              <tr>
+                <td>家庭成员共享支持</td>
+                <td>不适用（单设备）</td>
+                <td>支持多设备协同</td>
+                <td>支持团队多成员</td>
+              </tr>
+              <tr>
+                <td>流量重置包</td>
+                <td>支持独立加购</td>
+                <td>支持独立加购</td>
+                <td>支持独立加购</td>
+              </tr>
+              <tr>
+                <td>可选计费周期</td>
+                <td>月付 / 季付 / 半年 / 年付</td>
+                <td>月付 / 季付 / 半年 / 年付</td>
+                <td>月付 / 季付 / 半年 / 年付</td>
+              </tr>
+              <tr>
+                <td>购买入口</td>
+                <td><a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-secondary btn-sm">开通套餐一</a></td>
+                <td><a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-primary btn-sm">开通推荐套餐</a></td>
+                <td><a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-secondary btn-sm">开通套餐三</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Section 06: Device Guide
+         ========================================================================== -->
+    <section class="section section-alt" id="guide">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">DEVICE SETUP</span>
+          <h2 class="section-title">全平台客户端配置指南</h2>
+          <p class="section-desc">
+            介绍不同操作系统（Windows、macOS、Android、iOS）常用客户端的通用配置步骤，协助快速建立安全稳定的网络连接。
+          </p>
+        </div>
+
+        <!-- Platform Switch Tabs -->
+        <div class="device-tabs-nav" role="tablist" aria-label="操作系统平台切换">
+          <button class="device-tab-btn active" data-tab="windows" role="tab" aria-selected="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4.1 10.3 3v8H3V4.1Zm8.7-1.3L21 1.5V11h-9.3V2.8ZM3 13h7.3v8L3 19.9V13Zm8.7 0H21v9.5l-9.3-1.3V13Z"/></svg>
+            <span>Windows</span>
+          </button>
+          <button class="device-tab-btn" data-tab="macos" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.8 12.8c0-2.1 1.7-3.2 1.8-3.3a3.9 3.9 0 0 0-3-1.7c-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.8-2.8-.8-1.5 0-2.8.8-3.5 2.1-1.5 2.6-.4 6.4 1 8.4.7 1 1.5 2.1 2.5 2.1 1 0 1.4-.6 2.6-.6 1.2 0 1.6.6 2.6.6 1.1 0 1.8-1 2.5-2 .8-1.2 1.1-2.4 1.1-2.5-.1 0-2.1-.8-2.1-3.1Zm-2.1-6.4c.6-.8 1-1.8.9-2.9-.9 0-2 .6-2.6 1.4-.6.7-1.1 1.8-.9 2.8 1 .1 2-.5 2.6-1.3Z"/></svg>
+            <span>macOS</span>
+          </button>
+          <button class="device-tab-btn" data-tab="android" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m7.3 5.2-1.4-2.1.8-.5L8.2 5a8.1 8.1 0 0 1 7.6 0l1.5-2.4.8.5-1.4 2.1A6 6 0 0 1 19 10H5a6 6 0 0 1 2.3-4.8ZM5 11h14v7.2c0 1-.8 1.8-1.8 1.8H6.8c-1 0-1.8-.8-1.8-1.8V11Zm3-3a.8.8 0 1 0 0 1.6A.8.8 0 0 0 8 8Zm8 0a.8.8 0 1 0 0 1.6A.8.8 0 0 0 16 8ZM2.2 11.4h1.6v6.1c0 .6-.4 1-1 1h-.6v-7.1Zm18 0h1.6v7.1h-.6c-.6 0-1-.4-1-1v-6.1Z"/></svg>
+            <span>Android</span>
+          </button>
+          <button class="device-tab-btn" data-tab="ios" role="tab" aria-selected="false">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2Zm2 3h6v1H9V5Zm3 14.8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>
+            <span>iOS / iPadOS</span>
+          </button>
+        </div>
+
+        <!-- Tab 1: Windows Pane -->
+        <div class="device-tab-pane active" id="tab-windows" role="tabpanel">
+          <div class="device-guide-card">
+            <div class="guide-header-row">
+              <div>
+                <h3>Windows 平台配置规范</h3>
+                <p>推荐采用基于 Meta / Mihomo 内核的现代现代图形客户端进行配置与规则维护。</p>
+              </div>
+              <div class="guide-software-tags">
+                <span class="software-tag">Clash Verge Rev</span>
+                <span class="software-tag">v2rayN</span>
+                <span class="software-tag">sing-box GUI</span>
+              </div>
+            </div>
+
+            <div class="guide-steps-list">
+              <div class="guide-step-box">
+                <div class="step-number">01</div>
+                <h4>获取订阅链接</h4>
+                <p>登录用户中心，在订阅信息区域复制专属的 Clash / Universal 订阅地址。切勿将该私有密钥外泄。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">02</div>
+                <h4>导入配置 Profile</h4>
+                <p>启动 Clash Verge Rev，进入「订阅 / Profiles」页面，粘贴订阅 URL，点击「下载 / Import」拉取节点信息。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">03</div>
+                <h4>选择分流策略</h4>
+                <p>切换至「代理 / Proxies」标签，建议将分流模式设为「规则 / Rule」，并选中响应低延迟的香港或日本节点。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">04</div>
+                <h4>启动系统代理</h4>
+                <p>在客户端主界面开启「系统代理 / System Proxy」，并在设置中可勾选「开机自启」与「静默运行」。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: macOS Pane -->
+        <div class="device-tab-pane" id="tab-macos" role="tabpanel">
+          <div class="device-guide-card">
+            <div class="guide-header-row">
+              <div>
+                <h3>macOS 平台配置规范</h3>
+                <p>支持 Intel 及 Apple Silicon (M1/M2/M3/M4) 原生架构，支持 TUN 虚拟网卡全接管。</p>
+              </div>
+              <div class="guide-software-tags">
+                <span class="software-tag">Clash Verge Rev (Mac)</span>
+                <span class="software-tag">sing-box for Mac</span>
+                <span class="software-tag">Surge for Mac</span>
+              </div>
+            </div>
+
+            <div class="guide-steps-list">
+              <div class="guide-step-box">
+                <div class="step-number">01</div>
+                <h4>客户端安装与授权</h4>
+                <p>下载 DMG 文件拖入 Applications，若系统弹出安全提示，需在「系统设置 - 隐私与安全性」允许运行。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">02</div>
+                <h4>订阅配置导入</h4>
+                <p>在客户端中新建配置，输入 CyberGuard 订阅地址并完成下载，检查节点健康度（延时测速）。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">03</div>
+                <h4>增强模式与 TUN</h4>
+                <p>若需要接管终端命令行（Terminal）或特定开发环境请求，可安装 TUN 辅助网卡驱动。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">04</div>
+                <h4>校验网络状态</h4>
+                <p>开启「系统代理」，打开浏览器访问跨境站点测试连接，确认境内流量自动走 Direct 直连。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Android Pane -->
+        <div class="device-tab-pane" id="tab-android" role="tabpanel">
+          <div class="device-guide-card">
+            <div class="guide-header-row">
+              <div>
+                <h3>Android 平台配置规范</h3>
+                <p>支持开源轻量级代理核心，具备出色的电量控制与应用级分流黑白名单能力。</p>
+              </div>
+              <div class="guide-software-tags">
+                <span class="software-tag">Clash Meta for Android</span>
+                <span class="software-tag">sing-box (Android)</span>
+                <span class="software-tag">v2rayNG</span>
+              </div>
+            </div>
+
+            <div class="guide-steps-list">
+              <div class="guide-step-box">
+                <div class="step-number">01</div>
+                <h4>安装客户端 APK</h4>
+                <p>从官方开源发布页下载最新稳定版 APK 并完成系统安装，给予必要的本地存储与网络权限。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">02</div>
+                <h4>添加配置并更新</h4>
+                <p>点击「配置 - 新建」，输入订阅名称并粘贴 CyberGuard 专属订阅链接，保存后点击右上角下载配置。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">03</div>
+                <h4>设定分流与模式</h4>
+                <p>运行模式推荐选择「规则分流」，并在「分应用代理」中按需勾选需要加速的特定 App。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">04</div>
+                <h4>建立 VPN 隧道</h4>
+                <p>点击主界面「启动」按钮，在 Android 系统弹出的「网络连接请求」对话框中点击确定允许。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: iOS Pane -->
+        <div class="device-tab-pane" id="tab-ios" role="tabpanel">
+          <div class="device-guide-card">
+            <div class="guide-header-row">
+              <div>
+                <h3>iOS / iPadOS 平台配置规范</h3>
+                <p>需要使用海外 Apple ID 在 App Store 获取专业代理网络调试软件。</p>
+              </div>
+              <div class="guide-software-tags">
+                <span class="software-tag">Shadowrocket (小火箭)</span>
+                <span class="software-tag">Quantumult X</span>
+                <span class="software-tag">Loon / Surge</span>
+              </div>
+            </div>
+
+            <div class="guide-steps-list">
+              <div class="guide-step-box">
+                <div class="step-number">01</div>
+                <h4>获取支持软件</h4>
+                <p>登录非中国大陆地区 Apple ID 账户，在 App Store 检索并安装 Shadowrocket 等常用应用。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">02</div>
+                <h4>一键添加订阅</h4>
+                <p>打开 Shadowrocket，点击右上角「+」，类型选择「Subscribe」，粘贴订阅链接并保存更新。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">03</div>
+                <h4>延迟测速与选点</h4>
+                <p>轻点「连通性测试」，节点列表将按毫秒排序，选择低延迟优质节点，全局路由设为「配置 / Config」。</p>
+              </div>
+              <div class="guide-step-box">
+                <div class="step-number">04</div>
+                <h4>开启系统 VPN 权限</h4>
+                <p>开启顶部开关，首次启用根据 iOS 系统指引，验证 Face ID 或指纹锁允许添加 VPN 配置。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Section 07: Knowledge Center
+         ========================================================================== -->
+    <section class="section" id="articles">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">KNOWLEDGE BASE</span>
+          <h2 class="section-title">CyberGuard 原创技术知识库</h2>
+          <p class="section-desc">
+            拒绝千篇一律的营销口号，从协议原理、分流规则、节点评测到疑难排查，7 篇深度技术指南助您掌控数字访问。
+          </p>
+        </div>
+
+        <div class="articles-grid">
+          <!-- Article 1 -->
+          <article class="article-card">
+            <div class="article-meta">
+              <span class="article-category">基础原理</span>
+              <span>12 分钟阅读</span>
+            </div>
+            <h3>
+              <a href="articles/modern-network-architecture.html">CyberGuard 网络服务入门：理解现代网络连接架构</a>
+            </h3>
+            <p class="article-summary">
+              从公网路由跳数、数据加密封装到中继分流逻辑，系统阐述现代网络服务的工作机理及其在不同应用场景下的工程价值。
+            </p>
+            <a href="articles/modern-network-architecture.html" class="article-read-more">
+              <span>阅读全文</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="article-card">
+            <div class="article-meta">
+              <span class="article-category">概念辨析</span>
+              <span>10 分钟阅读</span>
+            </div>
+            <h3>
+              <a href="articles/vpn-vs-proxy-differences.html">CyberGuard VPN 与代理工具有什么区别？从连接方式谈起</a>
+            </h3>
+            <p class="article-summary">
+              OSI 七层网络模型下的深度剖析：系统级虚拟网卡与应用层分流代理在性能开销、规则灵活性及隐私隔离上的本质分野。
+            </p>
+            <a href="articles/vpn-vs-proxy-differences.html" class="article-read-more">
+              <span>阅读全文</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="article-card">
+            <div class="article-meta">
+              <span class="article-category">节点选优</span>
+              <span>14 分钟阅读</span>
+            </div>
+            <h3>
+              <a href="articles/node-selection-guide.html">CyberGuard 节点选择指南：延迟、地区与线路质量</a>
+            </h3>
+            <p class="article-summary">
+              如何看懂 Ping、RTT、丢包率与 Jitter？详解香港、日本、新加坡与美西节点的适用业务场景与测速误区。
+            </p>
+            <a href="articles/node-selection-guide.html" class="article-read-more">
+              <span>阅读全文</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Article 4 -->
+          <article class="article-card">
+            <div class="article-meta">
+              <span class="article-category">方案规划</span>
+              <span>11 分钟阅读</span>
+            </div>
+            <h3>
+              <a href="articles/plan-selection-analysis.html">CyberGuard 套餐怎么选？流量预算与设备需求分析</a>
+            </h3>
+            <p class="article-summary">
+              100GB、200GB 与 1000GB 究竟能看多久 4K 视频？针对学术、商务出差与团队协同的多维度选型算式。
+            </p>
+            <a href="articles/plan-selection-analysis.html" class="article-read-more">
+              <span>阅读全文</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Article 5 -->
+          <article class="article-card">
+            <div class="article-meta">
+              <span class="article-category">多端配置</span>
+              <span>15 分钟阅读</span>
+            </div>
+            <h3>
+              <a href="articles/client-configuration-guide.html">CyberGuard 客户端配置知识：Windows、macOS、Android、iOS</a>
+            </h3>
+            <p class="article-summary">
+              Clash Verge Rev、Shadowrocket、sing-box 与 v2rayN 深度使用教程，规避系统时钟偏差与 DNS 泄漏。
+            </p>
+            <a href="articles/client-configuration-guide.html" class="article-read-more">
+              <span>阅读全文</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Article 6 -->
+          <article class="article-card">
+            <div class="article-meta">
+              <span class="article-category">故障排查</span>
+              <span>16 分钟阅读</span>
+            </div>
+            <h3>
+              <a href="articles/troubleshooting-guide.html">CyberGuard 网络故障排查：连接失败、超时与丢包</a>
+            </h3>
+            <p class="article-summary">
+              手把手诊断网络故障树：证书失效、时钟偏离、系统端口冲突、订阅 Token 403 异常及本地 DNS 污染完整修复手册。
+            </p>
+            <a href="articles/troubleshooting-guide.html" class="article-read-more">
+              <span>阅读全文</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Article 7 -->
+          <article class="article-card">
+            <div class="article-meta">
+              <span class="article-category">硬核架构</span>
+              <span>13 分钟阅读</span>
+            </div>
+            <h3>
+              <a href="articles/bgp-iplc-transit-comparison.html">CyberGuard 网络技术指南：BGP、IPLC、中转线路的区别</a>
+            </h3>
+            <p class="article-summary">
+              揭秘跨境通信骨干工程：边界网关协议（BGP）路由自治、公网中转与物理专线（IPLC/IEPL）的传输延迟与成本差异。
+            </p>
+            <a href="articles/bgp-iplc-transit-comparison.html" class="article-read-more">
+              <span>阅读全文</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Section 08: FAQ
+         ========================================================================== -->
+    <section class="section section-alt" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">FREQUENTLY ASKED</span>
+          <h2 class="section-title">常见问题解答（FAQ）</h2>
+          <p class="section-desc">
+            汇集关于 CyberGuard 服务、账户使用、套餐流量、网络排错与通信安全的核心疑问，为您提供清晰客观的解答。
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>1. CyberGuard 是什么？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                CyberGuard 是专注于提供稳定、低延迟网络连接体验的官方技术服务平台，基于智能 BGP 调度和 IEPL 物理专线架构，帮助用户实现顺畅的跨境数据访问与分布式网络互联。官方网站提供标准化订阅接入、多终端配置指导与持续网络运维保障。
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>2. CyberGuard VPN 如何使用？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                使用流程分为四步：
+              </p>
+              <ul>
+                <li>在用户中心完成账号注册并选择订购合适的套餐方案；</li>
+                <li>根据您的设备系统（Windows、macOS、Android、iOS）下载并安装兼容的客户端软件；</li>
+                <li>复制专属订阅链接导入客户端，点击更新拉取最新节点；</li>
+                <li>选择合适节点（如香港、日本）并开启代理连接即可开始浏览。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>3. CyberGuard 机场有哪些节点？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                根据公开服务资料，CyberGuard 节点主要部署于亚太核心枢纽（中国香港、日本东京、新加坡、中国台湾）以及欧美骨干区域（美西圣何塞、美东纽约、英国伦敦、德国法兰克福等）。具体在线节点列表与可用线路随网络维护动态调整，以客户端实际订阅拉取结果为准。
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>4. CyberGuard 支持哪些设备？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                全面支持桌面端操作系统（Windows 10/11、macOS、Linux 发行版）以及移动端设备（iOS/iPadOS、Android 手机与平板）。通过标准通用的代理协议，可与多款主流开源及商业网络调试工具无缝对接。
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>5. CyberGuard 套餐怎么选择？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                轻度网页浏览、论文检索及消息通讯建议选择 100GB/月套餐（单设备）；日常高清流媒体点播、多设备同步或家庭轻度共享推荐 200GB/月推荐套餐（3 设备并发，附赠 EMBY）；涉及大容量数据同步、跨国开发协作或团队共用则建议选择 1000GB/月高配方案。
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>6. 如何理解节点延迟？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                节点延迟（Round Trip Time）反映的是数据包从本地出发经过中转专线到达目标出口服务器并返回所需的时间，单位为毫秒（ms）。延迟主要受限于光纤物理传输速度与沿途路由跳数。沿海连接香港通常在 20-40ms，日本在 40-70ms，欧美在 130-180ms，均属于符合物理光缆传播规律的优异范围。
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>7. 为什么不同地区节点速度不同？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                不同地区节点速度差异由以下物理与架构因素决定：
+              </p>
+              <ul>
+                <li>海底光缆物理距离不同，距离越远，往返延迟越大，TCP 窗口扩张速度越慢；</li>
+                <li>目标网站服务器所在位置不同（例如访问亚太媒体选香港/日本就近解析，访问美国本地网站选美西更通畅）；</li>
+                <li>不同节点的国际出口带宽负载与当地运营商 Peer 互联质量存在动态差异。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ 8 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>8. 如何更新订阅？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                在客户端配置管理界面中，右键点击 CyberGuard 配置名称（或点击刷新图标），客户端将向订阅服务器发起 HTTPS 请求，重新同步最新的节点 IP 地址、端口号与加密密钥。建议在遇到节点不可用或官方维护后手动刷新一次。
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 9 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>9. 连接失败应该怎么办？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                建议按以下顺序系统排查：
+              </p>
+              <ul>
+                <li><strong>检查系统时钟：</strong>打开系统设置开启「自动同步时间」，时钟偏差超过 60 秒会导致 TLS 握手认证直接被拒；</li>
+                <li><strong>检查套餐状态：</strong>登录控制面板确认账户套餐未过期且流量未用尽；</li>
+                <li><strong>更新订阅配置：</strong>重新拉取订阅，排除服务器 IP 变动引起的连接失效；</li>
+                <li><strong>排查端口冲突：</strong>检查本地是否有其他代理或杀毒软件占用了 7890 等本地监听端口。</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ 10 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>10. 如何判断线路稳定性？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                判断线路稳定性不可单纯看单次极值带宽，而应关注：持续丢包率是否低于 0.5%、网络延迟波动标准差（Jitter 抖动）是否平稳，以及在晚高峰（20:00 - 23:00）骨干网拥挤时段是否依然保持连接不断开。物理专线线路在抗抖动表现上天然优于公网线路。
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 11 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>11. BGP 和 IPLC 有什么区别？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                BGP（边界网关协议）是入口层的路由调度技术，解决不同运营商用户（电信、联通、移动）进入中继机房的最优路径；而 IPLC / IEPL 专线是机房与机房之间的跨境物理光纤内网传输通道，不走公网国际出口，不受跨境网络审查干扰，两者通常协同运作以保证全链路高品质传输。
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 12 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>12. 如何保护订阅链接安全？</span>
+              <span class="faq-icon-cross" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                订阅链接中包含用于认证您账户身份的私有 Token。请务必妥善保管，严禁公开发布在论坛、博客、社交平台或转交他人。若怀疑链接泄露导致他人盗刷流量，请立即登录控制中心点击「重置订阅信息」，重置后旧订阅将即刻失效。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         Section 09: Final CTA
+         ========================================================================== -->
+    <section class="section" id="cta">
+      <div class="container">
+        <div class="final-cta-box corner-accent">
+          <h2>构建高速、私密、稳定的全球数字访问通道</h2>
+          <p>
+            探索 CyberGuard 精选专线网络服务，享受 1000Mbps 高速传输与全平台多终端协同支持。清晰透明的方案体系，随时随地开启顺畅连接。
+          </p>
+
+          <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+            <a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-primary btn-lg">
+              <span>立即开通 CyberGuard 服务</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#guide" class="btn btn-secondary btn-lg">
+              <span>查阅配置使用指南</span>
+            </a>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <span class="sponsored-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              CyberGuard 官方服务入口 · 全链路 IEPL 专线品质保障
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       Section 10: Footer
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Disclaimer -->
+        <div class="footer-brand">
+          <a href="#hero" class="brand-logo" style="margin-bottom: 12px;">
+            <div class="brand-shield" aria-hidden="true">
+              <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 2L5 7V16C5 24.5 10.5 31.8 18 34C25.5 31.8 31 24.5 31 16V7L18 2Z" stroke="#00D9D0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18 9V27M12 14L24 22M12 22L24 14" stroke="#477BFF" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="18" cy="18" r="3.5" fill="#00D9D0"/>
+              </svg>
+            </div>
+            <div class="brand-name">
+              <span>CyberGuard</span>
+              <span class="brand-badge">cyberguard.sbs</span>
+            </div>
+          </a>
+          <p>
+            CyberGuard 官方网络连接与数字访问服务平台。致力于提供高品质专线互联、全球节点调度与多终端接入支持，赋能全球化科研、开发与数字生活。
+          </p>
+
+        </div>
+
+        <!-- Col 2: Site Navigation -->
+        <div class="footer-col">
+          <h4>页面导航</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#hero">首页总览</a></li>
+            <li><a href="#services">网络服务概览</a></li>
+            <li><a href="#architecture">网络技术架构</a></li>
+            <li><a href="#global">全球网络拓扑</a></li>
+            <li><a href="#pricing">套餐方案对比</a></li>
+            <li><a href="#guide">客户端配置指南</a></li>
+            <li><a href="#faq">常见问题解答</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Knowledge Base Articles -->
+        <div class="footer-col">
+          <h4>原创技术文档</h4>
+          <ul class="footer-nav-list">
+            <li><a href="articles/modern-network-architecture.html">现代网络连接架构</a></li>
+            <li><a href="articles/vpn-vs-proxy-differences.html">VPN 与代理工具区别</a></li>
+            <li><a href="articles/node-selection-guide.html">节点选择与延迟指南</a></li>
+            <li><a href="articles/plan-selection-analysis.html">套餐流量与设备分析</a></li>
+            <li><a href="articles/client-configuration-guide.html">四端客户端配置知识</a></li>
+            <li><a href="articles/troubleshooting-guide.html">网络故障排查手册</a></li>
+            <li><a href="articles/bgp-iplc-transit-comparison.html">BGP 与 IPLC 架构对比</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Legal & Compliance -->
+        <div class="footer-col">
+          <h4>法律与合规</h4>
+          <ul class="footer-nav-list">
+            <li><a href="privacy.html">隐私权保护政策</a></li>
+            <li><a href="terms.html">服务条款与免责声明</a></li>
+            <li><a href="sitemap.xml">XML 站点地图</a></li>
+            <li><a href="robots.txt">Robots 抓取协议</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>
+          <span>© 2026 CyberGuard (cyberguard.sbs). All Rights Reserved.</span>
+        </div>
+        <div>
+          <span>国际企业级科技品牌设计 · Enterprise Dark Security UI Framework</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js" defer></script>
+  <script src="js/cyber-core.js" defer></script>
+</body>
+</html>

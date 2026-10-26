@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberGuard 客户端配置知识：Windows、macOS、Android、iOS - CyberGuard 知识库</title>
+  <meta name="description" content="全平台客户端通用配置深度指南。详解 Windows (Clash Verge Rev)、macOS、Android 与 iOS (Shadowrocket) 订阅导入、TUN 虚拟网卡、分应用代理及 DNS 防污染设置。">
+  <meta name="keywords" content="CyberGuard, 客户端配置, Clash Verge Rev, Shadowrocket, sing-box, v2rayN, TUN模式, 订阅导入, DNS防泄漏">
+  <link rel="canonical" href="https://cyberguard.sbs/articles/client-configuration-guide.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="CyberGuard 知识库">
+  <meta property="og:url" content="https://cyberguard.sbs/articles/client-configuration-guide.html">
+  <meta property="og:title" content="CyberGuard 客户端配置知识：Windows、macOS、Android、iOS">
+  <meta property="og:description" content="全平台客户端通用配置深度指南，详解四大系统订阅导入与网络调试实操。">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/article.css">
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "CyberGuard 客户端配置知识：Windows、macOS、Android、iOS",
+    "description": "全平台客户端通用配置深度指南，详解四大系统订阅导入与网络调试实操。",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": "https://cyberguard.sbs/articles/client-configuration-guide.html",
+    "author": {
+      "@type": "Organization",
+      "name": "CyberGuard Network Engineering Team"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CyberGuard",
+      "url": "https://cyberguard.sbs/"
+    },
+    "datePublished": "2026-10-24T09:00:00+08:00",
+    "dateModified": "2026-10-26T12:00:00+08:00"
+  }
+  </script>
+</head>
+<body>
+  <div class="reading-progress-bar"></div>
+
+  <!-- Header -->
+  <header class="site-header scrolled">
+    <div class="container header-inner">
+      <a href="../index.html" class="brand-logo" aria-label="CyberGuard 首页">
+        <div class="brand-shield" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2L5 7V16C5 24.5 10.5 31.8 18 34C25.5 31.8 31 24.5 31 16V7L18 2Z" stroke="#00D9D0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 9V27M12 14L24 22M12 22L24 14" stroke="#477BFF" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="3.5" fill="#00D9D0"/>
+          </svg>
+        </div>
+        <div class="brand-name">
+          <span>CyberGuard</span>
+          <span class="brand-badge">TECH ARTICLES</span>
+        </div>
+      </a>
+
+      <nav aria-label="主导航">
+        <ul class="nav-menu">
+          <li><a href="../index.html#hero" class="nav-link">首页</a></li>
+          <li><a href="../index.html#services" class="nav-link">网络服务</a></li>
+          <li><a href="../index.html#architecture" class="nav-link">技术架构</a></li>
+          <li><a href="../index.html#pricing" class="nav-link">套餐方案</a></li>
+          <li><a href="../index.html#guide" class="nav-link">使用指南</a></li>
+          <li><a href="../index.html#articles" class="nav-link active">知识库</a></li>
+          <li><a href="../index.html#faq" class="nav-link">常见问题</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" class="btn btn-primary btn-sm">
+          <span>接入服务</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Article Hero -->
+  <section class="article-hero">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="面包屑导航">
+        <a href="../index.html">首页</a>
+        <span class="separator">/</span>
+        <a href="../index.html#articles">技术知识库</a>
+        <span class="separator">/</span>
+        <span class="current">四端客户端配置知识</span>
+      </nav>
+
+      <div class="article-header">
+        <h1 class="article-h1">CyberGuard 客户端配置知识：Windows、macOS、Android、iOS</h1>
+        <div class="article-meta-bar">
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>预计阅读时间：15 分钟 (约 1,950 字)</span>
+          </div>
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>技术撰写：CyberGuard 架构组</span>
+          </div>
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>更新时间：2026年10月</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Article Body -->
+  <main class="container">
+    <div class="article-layout">
+      <!-- Article Content Column -->
+      <article class="article-body">
+        <section id="guide-overview">
+          <h2>一、现代代理客户端通用工作流</h2>
+          <p>
+            尽管 Windows、macOS、Android 与 iOS 四大操作系统在底层权限架构与用户交互上各有千秋，但配合 CyberGuard 使用网络服务时，其通用的配置逻辑是高度统一的。
+          </p>
+          <p>
+            整个生命周期可以概括为标准的<strong>「四步核心工作流」</strong>：
+          </p>
+          <ol>
+            <li><strong>获取订阅凭证：</strong>在 CyberGuard 用户后台复制专属的加密订阅链接（URL）；</li>
+            <li><strong>导入配置档案（Profile）：</strong>在客户端中填入该链接，向订阅服务器发起安全的 HTTPS 同步请求，下载经过结构化解析的节点列表与规则集；</li>
+            <li><strong>策略组与分流设定：</strong>将运行模式设定为「规则模式（Rule）」，根据业务需要选择具体的出站节点（如香港或日本）；</li>
+            <li><strong>启动系统代理或虚拟网卡（TUN）：</strong>授权客户端接管操作系统的出站网络流量，完成网络连通性校验。</li>
+          </ol>
+        </section>
+
+        <section id="windows-guide">
+          <h2>二、Windows 平台实操：Clash Verge Rev 与 v2rayN</h2>
+          <p>
+            Windows 是开发与桌面办公的核心平台。目前业界最推荐基于 <strong>Mihomo (Clash.Meta) 内核</strong>且持续积极维护的图形客户端：<strong>Clash Verge Rev</strong>。
+          </p>
+
+          <h3>1. 安装与订阅导入流程</h3>
+          <ol>
+            <li>访问开源发布页下载 <code>Clash.Verge.Rev_*_x64-setup.exe</code>，按提示完成安装；</li>
+            <li>启动软件，点击左侧菜单栏的<strong>「订阅（Profiles）」</strong>；</li>
+            <li>在顶部输入框中粘贴您的 CyberGuard 专属订阅链接，点击右侧的<strong>「导入（Import）」</strong>按钮；</li>
+            <li>导入成功后，鼠标右键点击新建的配置卡片，选择<strong>「启用」</strong>。</li>
+          </ol>
+
+          <h3>2. Windows 专属高级技巧与避坑指南</h3>
+          <div class="callout callout-warning">
+            <div class="callout-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              <span>UWP 应用回环隔离问题（Loopback Exemption）</span>
+            </div>
+            <p>
+              Windows 系统为了安全沙盒隔离，默认禁止所有来自 Microsoft Store 下载的应用（如系统自带邮件、Xbox、OneNote）向本地回环地址（127.0.0.1）发送网络请求。这会导致开启系统代理后，这些 UWP 应用提示“无网络连接”。<br>
+              <strong>解决方法：</strong>在 Clash Verge Rev 设置中，找到并点击「Windows Loopback 工具」，点击「Exempt All（全部豁免）」并保存即可。
+            </p>
+          </div>
+          <p>
+            <strong>接管终端命令行流量：</strong>对于程序员而言，Windows 系统的代理不会自动对 CMD 或 PowerShell 生效。如需在命令行中加速 <code>git clone</code> 或 <code>npm install</code>，推荐在 Clash Verge Rev 中安装并开启「TUN 模式（虚拟网卡驱动）」，这样整个 Windows 的所有底层 TCP/UDP 流量都会被无缝接管。
+          </p>
+        </section>
+
+        <section id="macos-guide">
+          <h2>三、macOS 平台实操：优雅适配与权限授权</h2>
+          <p>
+            macOS 系统同样完美支持 <strong>Clash Verge Rev for Mac</strong> 以及 <strong>sing-box</strong> 原生图形端，全面兼容 Intel 与 Apple Silicon（M1 至 M4 系列芯片）。
+          </p>
+
+          <h3>1. 关键配置步骤</h3>
+          <ul>
+            <li>下载并打开 DMG 安装包，将应用图标拖动至 <code>Applications</code> 文件夹；</li>
+            <li>首次启动若提示“无法打开，因为无法验证开发者”，请前往<strong>「系统设置 - 隐私与安全性」</strong>，向下滚动点击<strong>「仍要打开」</strong>；</li>
+            <li>在「订阅」页面中粘贴 CyberGuard 订阅链接并下载，切换到「代理」选择香港节点，开启「系统代理」开关；</li>
+            <li>若需接管 Terminal 或特定本地微服务，开启「TUN 模式」时，系统会弹出授权框，输入 Mac 开机密码以允许安装网络扩展驱动。</li>
+          </ul>
+
+          <div class="callout callout-info">
+            <div class="callout-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <span>Mac 睡眠唤醒后的网络自愈</span>
+            </div>
+            <p>
+              Mac 笔记本在合盖休眠唤醒后，偶尔会出现系统 DNS 缓存滞留导致网络暂时无响应的现象。此时无需重启系统，只需在终端中执行 <code>sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder</code> 即可快速清空本地 DNS 缓存。
+            </p>
+          </div>
+        </section>
+
+        <section id="android-guide">
+          <h2>四、Android 平台实操：电量优化与分应用代理</h2>
+          <p>
+            Android 生态高度开放，推荐使用基于现代内核开发的 <strong>Clash Meta for Android (CMFA)</strong> 或 <strong>sing-box Android</strong>。
+          </p>
+
+          <h3>1. 核心操作步骤</h3>
+          <ol>
+            <li>安装官方开源发布的 APK 安装包；</li>
+            <li>打开应用，点击<strong>「配置 - 新建」</strong>，选择<strong>「从 URL 导入」</strong>；</li>
+            <li>输入配置名称（如 CyberGuard），粘贴订阅链接并点击右上角保存；</li>
+            <li>返回主界面，点击「配置」选中刚才下载的项目，然后点击最上方的<strong>「启动」</strong>按钮；</li>
+            <li>Android 系统会弹出「网络连接请求 / VPN 权限」，点击「确定」允许建立本地虚拟隧道。</li>
+          </ol>
+
+          <h3>2. Android 必备两大优化项</h3>
+          <ul>
+            <li><strong>电池优化白名单：</strong>国产定制系统（如小米澎湃 OS、华为鸿蒙、vivo OriginOS、OPPO ColorOS）具有严格的后台墓碑机制。请长按客户端图标进入应用信息，将「省电策略」设为<strong>「无限制 / 允许后台自启」</strong>，并在多任务界面对该应用进行加锁，防止后台切歌或息屏时代理进程被系统强制查杀；</li>
+            <li><strong>分应用代理（App Routing）：</strong>在客户端设置中开启「分应用代理」，勾选需要走专线出国的特定 App（如 YouTube、Chrome、Twitter），其他如微信、高德地图、网银等应用彻底绕过代理，保障国内 App 达到满速直连且极度省电。</li>
+          </ul>
+        </section>
+
+        <section id="ios-guide">
+          <h2>五、iOS / iPadOS 平台实操：Shadowrocket 与生态工具</h2>
+          <p>
+            受限于苹果 iOS 闭源生态的策略，中国大陆区 App Store 下架了所有网络代理调试工具。iOS 用户需要使用<strong>非大陆地区的 Apple ID</strong> 登录 App Store 下载。
+          </p>
+
+          <h3>1. 常见 iOS 客户端选择</h3>
+          <div class="article-table-wrap">
+            <table class="article-table">
+              <thead>
+                <tr>
+                  <th>工具名称</th>
+                  <th>上手门槛</th>
+                  <th>特点评价</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Shadowrocket (小火箭)</strong></td>
+                  <td>极低 (新手友好)</td>
+                  <td>功能全面，协议兼容性极佳，界面直观，性价比较高</td>
+                </tr>
+                <tr>
+                  <td><strong>Quantumult X (圈 X)</strong></td>
+                  <td>中等</td>
+                  <td>界面精致，规则分流与重写功能强大，适合极客玩家</td>
+                </tr>
+                <tr>
+                  <td><strong>Surge for iOS</strong></td>
+                  <td>专业级</td>
+                  <td>网络抓包与调试工业级标杆，授权费用较高</td>
+                </tr>
+                <tr>
+                  <td><strong>sing-box (iOS)</strong></td>
+                  <td>免费开源</td>
+                  <td>纯开源内核，在 App Store 免费提供下载，适合极客</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>2. Shadowrocket 极速配置流程</h3>
+          <ol>
+            <li>在 App Store 登录海外账号，搜索并下载 <strong>Shadowrocket</strong>；</li>
+            <li>打开 Shadowrocket，点击右上角<strong>「+」</strong>号；</li>
+            <li>在「类型」下拉菜单中选择<strong>「Subscribe」</strong>（部分版本显示为订阅）；</li>
+            <li>在「URL」栏中粘贴 CyberGuard 订阅链接，备注填写「CyberGuard」，点击右上角「完成」；</li>
+            <li>回到首页后向下滑动屏幕触发订阅更新，所有节点将整齐展现；</li>
+            <li>点击「连通性测试」测试延迟，选择一个绿色的香港/日本节点；</li>
+            <li>将首页下方的「全局路由」设为<strong>「配置（Config）」</strong>；</li>
+            <li>开启最上方的总开关，根据 iOS 系统提示输入锁屏密码以允许添加 VPN 配置。</li>
+          </ol>
+        </section>
+
+        <section id="security-dns">
+          <h2>六、订阅安全与 DNS 防污染进阶知识</h2>
+          <p>
+            完成四端配置后，理解以下两项高阶安全原则能保护您的账户与隐私：
+          </p>
+
+          <h3>1. 严禁泄露专属订阅 URL</h3>
+          <p>
+            您的订阅链接类似于包含用户名和加密密码的私有通行证。如果将其发送至公开发布的贴吧、QQ 群、GitHub Issue 中，其他人只需将该 URL 复制到自己的客户端，便能在无密码的情况下直接盗用您的节点，耗尽您的套餐高速流量，甚至导致您的账户被安全系统封禁。
+          </p>
+
+          <h3>2. 科学理解 Fake-IP 与 DNS 防污染</h3>
+          <p>
+            在高级规则分流配置中，通常会看到 <code>enhanced-mode: fake-ip</code> 的设定。这是当前最先进的 DNS 调度机制：客户端在收到系统发起的境外域名解析请求时，并不立即等待远程 DNS 服务器返回真实 IP，而是由本地代理核心瞬间分配一个虚构的保留私网 IP（如 <code>198.18.0.1</code>）。
+          </p>
+          <p>
+            这样可以彻底杜绝本地运营商的 DNS 投毒与污染，并将域名解析操作延迟到海外出口节点端执行，大幅缩短网页首次建立连接的等待时间（TTFB）。
+          </p>
+        </section>
+
+        <section id="article-summary-5">
+          <h2>七、总结</h2>
+          <p>
+            掌握多操作系统的通用配置技巧，让您在更换电脑、更新手机时都能泰然处之。配合 CyberGuard 的标准化协议订阅，跨设备漫游变得从未如此简单。
+          </p>
+          <p>
+            接下来推荐阅读：
+          </p>
+          <ul>
+            <li>出现网络连接问题时的急救方案：<a href="troubleshooting-guide.html">《CyberGuard 网络故障排查：连接失败、超时与丢包》</a></li>
+            <li>了解底层的专线架构：<a href="bgp-iplc-transit-comparison.html">《CyberGuard 网络技术指南：BGP、IPLC、中转线路的区别》</a></li>
+            <li>回到首页了解服务与套餐：<a href="../index.html">CyberGuard 首页</a></li>
+          </ul>
+        </section>
+
+        <!-- CTA Box -->
+        <div class="callout callout-blue" style="margin-top: 48px;">
+          <div class="callout-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <span>一键配置，全设备畅享高速网络</span>
+          </div>
+          <p>
+            CyberGuard 全面兼容 Windows、macOS、Android 与 iOS。清晰教程搭配 1000Mbps 高速专线。<br>
+            <a href="https://varnexa.lingdongaff.com/#/?code=HHoxxHGa" target="_blank" rel="sponsored noopener noreferrer" style="font-weight: 700; text-decoration: underline; color: var(--color-cyan);">前往 CyberGuard 订购结算页面了解详情 →</a>
+          </p>
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="article-sidebar">
+        <div class="toc-sticky">
+          <div class="toc-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            <span>本文目录导航</span>
+          </div>
+          <ul class="toc-list">
+            <li class="toc-item"><a href="#guide-overview">一、通用工作流四部曲</a></li>
+            <li class="toc-item"><a href="#windows-guide">二、Windows 平台实操与避坑</a></li>
+            <li class="toc-item"><a href="#macos-guide">三、macOS 平台授权与自愈</a></li>
+            <li class="toc-item"><a href="#android-guide">四、Android 电量与分应用代理</a></li>
+            <li class="toc-item"><a href="#ios-guide">五、iOS Shadowrocket 实操</a></li>
+            <li class="toc-item"><a href="#security-dns">六、订阅安全与 Fake-IP 机制</a></li>
+            <li class="toc-item"><a href="#article-summary-5">七、总结与扩展阅读</a></li>
+          </ul>
+
+          <div class="sidebar-cta">
+            <h4>快速查看套餐方案</h4>
+            <p>100GB / 200GB / 1000GB 多种规格，透明计费</p>
+            <a href="../index.html#pricing" class="btn btn-primary btn-sm" style="width: 100%;">查看套餐表格</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom-bar">
+        <div>
+          <span>© 2026 CyberGuard (cyberguard.sbs) · 官方技术知识库</span>
+        </div>
+        <div>
+          <a href="../privacy.html" style="color: var(--text-muted); margin-right: 16px;">隐私政策</a>
+          <a href="../terms.html" style="color: var(--text-muted); margin-right: 16px;">服务条款</a>
+          <a href="../sitemap.xml" style="color: var(--text-muted);">站点地图</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js" defer></script>
+</body>
+</html>
